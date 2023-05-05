@@ -1,9 +1,9 @@
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ApplicationAdapter, RepositoryAdapter } from "adapters";
-import ui from "ui/main";
+import UI from "ui/main";
 
-ui(ApplicationAdapter(RepositoryAdapter()));
+UI(ApplicationAdapter(RepositoryAdapter()));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

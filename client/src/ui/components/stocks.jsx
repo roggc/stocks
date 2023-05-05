@@ -14,7 +14,7 @@ const Stocks = () => {
     fetchStocks(exchange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getStocks]);
-  console.log("stocks", stocks);
+
   return (
     <>
       {stocks.map(({ id, symbol }) => (

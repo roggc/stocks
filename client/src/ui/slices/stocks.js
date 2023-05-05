@@ -1,9 +1,9 @@
 import { createSlice } from "react-context-slices";
 import { useCallback } from "react";
 
-export const name = "applicationAdapter";
+export const name = "stocks";
 const initialState = {
-  value: {},
+  value: [],
 };
 const SET = "SET";
 const reducer = (draft, { type, payload }) => {

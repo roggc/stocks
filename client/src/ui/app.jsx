@@ -1,21 +1,22 @@
-import { useEffect } from "react";
-import {
-  applicationAdapter as applicationAdapterSlice,
-  useActions,
-} from "ui/slices";
-import Stocks from "ui/components/stocks";
+import { useSetApplicationAdapter, useSetStocks, useGetStocks } from "ui/hooks";
+import Dropdown from "ui/components/dropdown";
+import { useMemo } from "react";
+
+const EXCHANGE = "US";
 
 const App = ({ applicationAdapter }) => {
-  const {
-    [applicationAdapterSlice]: { set: setApplicationAdapterValue },
-  } = useActions();
-  useEffect(() => {
-    console.log("applicationAdapter", applicationAdapter);
-    setApplicationAdapterValue(applicationAdapter);
-  }, [applicationAdapter, setApplicationAdapterValue]);
+  useSetApplicationAdapter(applicationAdapter);
+  useSetStocks(EXCHANGE);
+  const stocks = useGetStocks();
+  const options = useMemo(
+    () =>
+      stocks.map(({ description: label, symbol: value }) => ({ label, value })),
+    [stocks]
+  );
+
   return (
     <>
-      <Stocks />
+      <Dropdown options={options} isMulti placeholder="Select stock" />
     </>
   );
 };

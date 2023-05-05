@@ -13,7 +13,6 @@ app.get("/api", async (req, res) => {
   const fetchPath = `${BASE_PATH}${route}?${parseParams(params)}&token=${
     process.env.API_KEY
   }`;
-  console.log("fetchPath", fetchPath);
   const resp = await fetch(fetchPath);
   const data = await resp.json();
   res.send(data);

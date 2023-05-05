@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Root from "ui/root";
 
-const ui = (applicationAdapter) => {
+const UI = (applicationAdapter) => {
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>
@@ -11,4 +11,4 @@ const ui = (applicationAdapter) => {
   );
 };
 
-export default ui;
+export default UI;
