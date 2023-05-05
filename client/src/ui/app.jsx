@@ -3,6 +3,7 @@ import Dropdown from "ui/components/dropdown";
 import { useMemo } from "react";
 
 const EXCHANGE = "US";
+const STOCKS_MAX_NUM = 3;
 
 const App = ({ applicationAdapter }) => {
   useSetApplicationAdapter(applicationAdapter);
@@ -16,7 +17,12 @@ const App = ({ applicationAdapter }) => {
 
   return (
     <>
-      <Dropdown options={options} isMulti placeholder="Select stock" />
+      <Dropdown
+        options={options}
+        isMulti
+        placeholder="Select stock"
+        maxNumOfOptionsSelected={STOCKS_MAX_NUM}
+      />
     </>
   );
 };
