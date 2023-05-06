@@ -1,10 +1,18 @@
-import { useSelectedOptions, useGetApplicationAdapter } from "ui/hooks";
+import {
+  useSelectedOptions,
+  useGetApplicationAdapter,
+  useFrom,
+  useTo,
+} from "ui/hooks";
 import { useEffect, useState } from "react";
 
-export const useCandles = ({ from, to, resolution }) => {
+export const useCandles = (resolution) => {
   const [selectedOptions] = useSelectedOptions();
   const { getCandle } = useGetApplicationAdapter();
+  const [from] = useFrom();
+  const [to] = useTo();
   const [candles, setCandles] = useState([]);
+
   useEffect(() => {
     const candles_ = [];
     const fetchCandle = async (parameters) => {
@@ -14,10 +22,11 @@ export const useCandles = ({ from, to, resolution }) => {
     (async () => {
       for await (const symbol of selectedOptions) {
         const candle = await fetchCandle({ symbol, resolution, from, to });
-        candles_.push(candle);
+        candles_.push({ ...candle, symbol });
       }
+      setCandles(candles_);
     })();
-    setCandles(candles_);
   }, [selectedOptions, from, to, resolution, getCandle]);
+
   return candles;
 };

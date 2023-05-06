@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { RangeSlider } from "rsuite";
-import { getUNIXTimestamp } from "ui/utils";
 import moment from "moment";
+import { useFrom, useTo } from "ui/hooks";
+import { MAX, MIN, STEP } from "ui/constants_/slider";
 
-const max = getUNIXTimestamp(Date.now());
-const step = 60 * 60 * 24;
-const min = max - step * 365;
 const renderValue = (value) => {
   const date = new Date(value * 1000);
   const momentValue = moment(date);
@@ -34,15 +32,25 @@ const renderValue = (value) => {
 };
 
 const FromToControl = ({ ...props }) => {
+  const [origin, setOrigin] = useFrom();
+  const [end, setEnd] = useTo();
+  const onChange = ([origin_, end_]) => {
+    if (origin_ < end_) {
+      setOrigin(origin_);
+      setEnd(end_);
+    }
+  };
+
   return (
     <FromToControlContainer {...props}>
       <RangeSlider
-        min={min}
-        max={max}
-        step={step}
+        min={MIN}
+        max={MAX}
+        step={STEP}
         renderMark={renderValue}
         renderTooltip={renderValue}
-        defaultValue={[min, max]}
+        onChange={onChange}
+        value={[origin, end]}
       />
     </FromToControlContainer>
   );

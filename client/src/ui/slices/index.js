@@ -34,8 +34,8 @@ export { name as applicationAdapter } from "./application-adapter";
 export { name as stocks } from "./stocks";
 export { name as selectedOptions } from "./selected-options";
 export { name as priceType } from "./price-type";
-export { name as from } from "./from";
-export { name as to } from "./to";
+export { name as fromSlice } from "./from";
+export { name as toSlice } from "./to";
 
 export const useValues = (slice) => ({
   ...useApplicationAdapterValues(slice),

@@ -1,9 +1,10 @@
 import { createSlice } from "react-context-slices";
 import { useCallback } from "react";
+import { MAX } from "ui/constants_/slider";
 
 export const name = "to";
 const initialState = {
-  value: 0,
+  value: MAX,
 };
 const SET = "SET";
 const reducer = (draft, { type, payload }) => {

@@ -1,20 +1,29 @@
-import { useCandles } from "ui/hooks";
-import { LineChart, Line, XAxis, YAxis } from "recharts";
+import { useCandles, usePriceType } from "ui/hooks";
+import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import { getChartDataFromCandles } from "ui/utils";
-import { Y_AXIS_DATA_KEY } from "ui/constants_";
+import { Y_AXIS_DATA_KEY, RESOLUTION } from "ui/constants_";
+import moment from "moment";
 
-const Chart = ({ type, from, to, resolution }) => {
-  const candles = useCandles({ from, to, resolution });
-  const data = getChartDataFromCandles({ from, to, candles, type });
+const Chart = ({ ...props }) => {
+  const [type] = usePriceType();
+  const candles = useCandles(RESOLUTION);
+  const data = getChartDataFromCandles({ candles, type });
 
   return (
     <>
-      <LineChart data={data} width={600} height={300}>
-        {candles.map(({ id }) => (
-          <Line key={id} dataKey={`${id}`} />
+      <LineChart data={data} width={600} height={300} {...props}>
+        {candles.map(({ id, symbol }) => (
+          <Line key={id} dataKey={`${symbol}`} dot={false} />
         ))}
-        <XAxis dataKey={Y_AXIS_DATA_KEY} />
+        <XAxis
+          dataKey={Y_AXIS_DATA_KEY}
+          tickFormatter={(value) => {
+            return moment(new Date(value * 1000)).format("MMM Do YY");
+          }}
+          interval="preserveStartEnd"
+        />
         <YAxis />
+        <Tooltip itemSorter={({ value }) => value * -1} />
       </LineChart>
     </>
   );
