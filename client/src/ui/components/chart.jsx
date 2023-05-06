@@ -1,8 +1,7 @@
 import { useCandles, usePriceType } from "ui/hooks";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
-import { getChartDataFromCandles } from "ui/utils";
+import { getChartDataFromCandles, formatTimestamp } from "ui/utils";
 import { Y_AXIS_DATA_KEY, RESOLUTION } from "ui/constants_";
-import moment from "moment";
 
 const Chart = ({ ...props }) => {
   const [type] = usePriceType();
@@ -17,13 +16,14 @@ const Chart = ({ ...props }) => {
         ))}
         <XAxis
           dataKey={Y_AXIS_DATA_KEY}
-          tickFormatter={(value) => {
-            return moment(new Date(value * 1000)).format("MMM Do YY");
-          }}
+          tickFormatter={formatTimestamp}
           interval="preserveStartEnd"
         />
         <YAxis />
-        <Tooltip itemSorter={({ value }) => value * -1} />
+        <Tooltip
+          itemSorter={({ value }) => value * -1}
+          labelFormatter={formatTimestamp}
+        />
       </LineChart>
     </>
   );
