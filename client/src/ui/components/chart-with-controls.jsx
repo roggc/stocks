@@ -11,6 +11,10 @@ const ChartWithControls = ({ ...props }) => {
   );
 };
 
-const ChartWithControlsContainer = styled.div``;
+const ChartWithControlsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 export default ChartWithControls;
