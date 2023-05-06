@@ -1,1 +1,4 @@
-export const ApplicationPort = ({ getStocks }) => ({ getStocks });
+export const ApplicationPort = ({ getStocks, getCandle }) => ({
+  getStocks,
+  getCandle,
+});

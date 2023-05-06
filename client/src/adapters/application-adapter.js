@@ -1,5 +1,5 @@
 import { ApplicationPort } from "ports";
-import { Stock } from "domain/entities/stock";
+import { Stock, Candle } from "domain/entities";
 
 export const ApplicationAdapter = (repositoryAdapter) => {
   const getStocks = async (exchange) => {
@@ -7,6 +7,11 @@ export const ApplicationAdapter = (repositoryAdapter) => {
     const stocks = stocks_.map((s) => Stock(s));
     return stocks;
   };
-  const applicationAdapter = ApplicationPort({ getStocks });
+  const getCandle = async (parameters) => {
+    const candle_ = await repositoryAdapter.getCandle(parameters);
+    const candle = Candle(candle_);
+    return candle;
+  };
+  const applicationAdapter = ApplicationPort({ getStocks, getCandle });
   return applicationAdapter;
 };

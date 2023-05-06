@@ -3,12 +3,17 @@ import { BASE_PATH } from "api-config";
 
 export const RepositoryAdapter = () => {
   const getStocks = async (exchange) => {
-    const resp = await fetch(
-      `${BASE_PATH}?route=/stock/symbol&exchange=${exchange}`
-    );
+    const fetchPath = `${BASE_PATH}?route=/stock/symbol&exchange=${exchange}`;
+    const resp = await fetch(fetchPath);
     const data = await resp.json();
     return data;
   };
-  const repositoryAdapter = RepositoryPort({ getStocks });
+  const getCandle = async ({ symbol, resolution, from, to }) => {
+    const fetchPath = `${BASE_PATH}?route=/stock/candle&symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}`;
+    const resp = await fetch(fetchPath);
+    const data = await resp.json();
+    return data;
+  };
+  const repositoryAdapter = RepositoryPort({ getStocks, getCandle });
   return repositoryAdapter;
 };

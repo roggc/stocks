@@ -1,1 +1,4 @@
-export const RepositoryPort = ({ getStocks }) => ({ getStocks });
+export const RepositoryPort = ({ getStocks, getCandle }) => ({
+  getStocks,
+  getCandle,
+});

@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import ReactSelect, { createFilter } from "react-select";
-import Option from "ui/components/option";
-import MenuList from "ui/components/menu-list";
-import { useSelectedOptions } from "ui/hooks";
+import Option from "ui/components/dropdown/option";
+import MenuList from "ui/components/dropdown/menu-list";
 
 const customFilter = createFilter({ ignoreAccents: false });
 
-const Dropdown = ({ maxNumOfOptionsSelected, ...props }) => {
-  const [selectedOptions, setSelectedOptions] = useSelectedOptions();
+const Dropdown = ({
+  maxNumOfOptionsSelected,
+  selectedOptions,
+  setSelectedOptions,
+  ...props
+}) => {
   return (
     <>
       <Select
