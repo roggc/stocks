@@ -4,7 +4,6 @@ export const getChartDataFromCandles = ({ candles, type }) => {
   if (!candles.length) {
     return [];
   }
-  console.log("candles", candles);
   const data = candles.reduce(
     (d, c) => {
       c[type]?.forEach((price, i) => {
