@@ -5,3 +5,6 @@ export * from "./useSelectedOptions";
 export * from "./useGetApplicationAdapter";
 export * from "./useCandles";
 export * from "./usePriceType";
+export * from "./useSetSelectedOptionsAsArray";
+export * from "./useStocks";
+export * from "./useOptions";

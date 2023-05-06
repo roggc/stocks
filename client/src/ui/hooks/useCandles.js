@@ -12,7 +12,7 @@ export const useCandles = ({ from, to, resolution }) => {
       return candle;
     };
     (async () => {
-      for await (const { value: symbol } of selectedOptions) {
+      for await (const symbol of selectedOptions) {
         const candle = await fetchCandle({ symbol, resolution, from, to });
         candles_.push(candle);
       }
