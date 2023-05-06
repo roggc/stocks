@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { SelectPicker } from "rsuite";
 import { useState } from "react";
-import { useSetSelectedOptionsAsArray } from "ui/hooks";
+import { useSetSelectedOptionsAsArray, useStocks, useOptions } from "ui/hooks";
+import { EXCHANGE, STOCKS_MAX_NUM } from "ui/constants_";
 
-const StockControl = ({ options, maxNumberOfStocks, ...props }) => {
-  const arrayShape = Array.from({ length: maxNumberOfStocks }, (v, i) => i);
+const StockControl = ({ ...props }) => {
+  const arrayShape = Array.from({ length: STOCKS_MAX_NUM }, (v, i) => i);
   const [values, setValues] = useState({ ...arrayShape.map((v) => null) });
   useSetSelectedOptionsAsArray(values);
+  const stocks = useStocks(EXCHANGE);
+  const options = useOptions(stocks);
 
   return (
     <StockControlContainer {...props}>
@@ -25,6 +28,9 @@ const StockControl = ({ options, maxNumberOfStocks, ...props }) => {
   );
 };
 
-const StockControlContainer = styled.div``;
+const StockControlContainer = styled.div`
+  display: inline-flex;
+  gap: 10px;
+`;
 
 export default StockControl;

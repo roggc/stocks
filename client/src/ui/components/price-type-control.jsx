@@ -1,33 +1,30 @@
 import styled from "styled-components";
+import { Radio, RadioGroup } from "rsuite";
+import { usePriceType } from "ui/hooks";
 
 const availableTypes = ["o", "h", "l", "c"];
 const labelTypes = ["Open", "High", "Low", "Close"];
 
-const PriceTypeControl = ({ priceType, setPriceType, ...props }) => {
+const PriceTypeControl = ({ ...props }) => {
+  const [priceType, setPriceType] = usePriceType();
   return (
     <PriceTypeControlContainer {...props}>
-      {availableTypes.map((t, i) => (
-        <RadioContainer key={t}>
-          <Input
-            type="radio"
-            name="price-type"
-            value={t}
-            checked={priceType === t}
-            onChange={({ target: { value } }) => setPriceType(value)}
-          />
-          <Label>{labelTypes[i]}</Label>
-        </RadioContainer>
-      ))}
+      <RadioGroup
+        inline
+        name="price-type"
+        value={priceType}
+        onChange={setPriceType}
+      >
+        {availableTypes.map((t, i) => (
+          <Radio key={t} value={t}>
+            {labelTypes[i]}
+          </Radio>
+        ))}
+      </RadioGroup>
     </PriceTypeControlContainer>
   );
 };
 
-const Input = styled.input``;
-const PriceTypeControlContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const RadioContainer = styled.div``;
-const Label = styled.label``;
+const PriceTypeControlContainer = styled.div``;
 
 export default PriceTypeControl;
