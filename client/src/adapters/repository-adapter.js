@@ -1,5 +1,5 @@
 import { RepositoryPort } from "ports";
-import { BASE_PATH } from "api-config";
+import { BASE_PATH } from "adapters/constants_/api-config";
 
 export const RepositoryAdapter = () => {
   const getStocks = async (exchange) => {

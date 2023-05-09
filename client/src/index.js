@@ -1,7 +1,6 @@
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ApplicationAdapter, RepositoryAdapter } from "adapters";
-import UI from "ui/main";
+import UI from "ui";
 
 UI(ApplicationAdapter(RepositoryAdapter()));
 
