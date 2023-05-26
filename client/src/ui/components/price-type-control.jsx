@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Radio, RadioGroup } from "rsuite";
-import { usePriceType } from "ui/hooks";
+import { useSlice } from "ui/slices";
 
 const availableTypes = ["o", "h", "l", "c"];
 const labelTypes = ["Open", "High", "Low", "Close"];
 
 const PriceTypeControl = ({ ...props }) => {
-  const [priceType, setPriceType] = usePriceType();
+  const [priceType, setPriceType] = useSlice("priceType");
   return (
     <PriceTypeControlContainer {...props}>
       <RadioGroup

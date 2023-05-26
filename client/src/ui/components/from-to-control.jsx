@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { RangeSlider } from "rsuite";
 import moment from "moment";
-import { useFrom, useTo } from "ui/hooks";
+import { useSlice } from "ui/slices";
 import { MAX, MIN, STEP } from "ui/constants_/slider";
 
 const renderValue = (value) => {
@@ -32,8 +32,8 @@ const renderValue = (value) => {
 };
 
 const FromToControl = ({ ...props }) => {
-  const [origin, setOrigin] = useFrom();
-  const [end, setEnd] = useTo();
+  const [origin, setOrigin] = useSlice("from");
+  const [end, setEnd] = useSlice("to");
   const onChange = ([origin_, end_]) => {
     if (origin_ < end_) {
       setOrigin(origin_);

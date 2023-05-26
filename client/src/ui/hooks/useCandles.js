@@ -1,22 +1,17 @@
-import {
-  useSelectedOptions,
-  useGetApplicationAdapter,
-  useFrom,
-  useTo,
-} from "ui/hooks";
 import { useEffect, useState } from "react";
+import { useSlice } from "ui/slices";
 
 export const useCandles = (resolution) => {
-  const [selectedOptions] = useSelectedOptions();
-  const { getCandle } = useGetApplicationAdapter();
-  const [from] = useFrom();
-  const [to] = useTo();
+  const [selectedOptions] = useSlice("selectedOptions");
+  const [{ getCandle }] = useSlice("applicationAdapter");
+  const [from] = useSlice("from");
+  const [to] = useSlice("to");
   const [candles, setCandles] = useState([]);
 
   useEffect(() => {
     const candles_ = [];
     const fetchCandle = async (parameters) => {
-      const candle = await getCandle(parameters);
+      const candle = await getCandle?.(parameters);
       return candle;
     };
     (async () => {

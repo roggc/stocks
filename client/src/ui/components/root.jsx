@@ -1,11 +1,11 @@
-import AppProvider from "ui/slices";
+import { Provider } from "ui/slices";
 import App from "ui/components/app";
 
 const Root = ({ applicationAdapter }) => {
   return (
-    <AppProvider>
+    <Provider>
       <App applicationAdapter={applicationAdapter} />
-    </AppProvider>
+    </Provider>
   );
 };
 

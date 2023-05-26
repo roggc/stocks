@@ -1,7 +1,7 @@
-import { useGetStocks } from "./useGetStocks";
+import { useSlice } from "ui/slices";
 import { useSetStocks } from "./useSetStocks";
 
 export const useStocks = (exchange) => {
   useSetStocks(exchange);
-  return useGetStocks();
+  return useSlice("stocks")[0];
 };

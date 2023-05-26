@@ -1,11 +1,12 @@
-import { useCandles, usePriceType } from "ui/hooks";
+import { useCandles } from "ui/hooks";
+import { useSlice } from "ui/slices";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import { getChartDataFromCandles, formatTimestamp } from "ui/utils";
 import { Y_AXIS_DATA_KEY, RESOLUTION } from "ui/constants_";
 import styled from "styled-components";
 
 const Chart = ({ ...props }) => {
-  const [type] = usePriceType();
+  const [type] = useSlice("priceType");
   const candles = useCandles(RESOLUTION);
   const data = getChartDataFromCandles({ candles, type });
 

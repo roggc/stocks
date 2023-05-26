@@ -1,8 +1,8 @@
-import { useSelectedOptions } from "./useSelectedOptions";
+import { useSlice } from "ui/slices";
 import { useEffect } from "react";
 
 export const useSetSelectedOptionsAsArray = (values) => {
-  const [, setSelectedOptions] = useSelectedOptions();
+  const [, setSelectedOptions] = useSlice("selectedOptions");
   useEffect(() => {
     const getValuesAsArray = () => {
       const values_ = [];
