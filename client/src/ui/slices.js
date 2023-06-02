@@ -3,10 +3,10 @@ import { MIN } from "ui/constants_/slider";
 import { MAX } from "ui/constants_/slider";
 
 export const { useSlice, Provider } = getHookAndProviderFromSlices({
-  applicationAdapter: { initialState: {} },
-  from: { initialState: MIN },
-  priceType: { initialState: "o" },
-  selectedOptions: { initialState: [] },
-  stocks: { initialState: [] },
-  to: { initialState: MAX },
+  applicationAdapter: { initialArg: {} },
+  from: { initialArg: MIN },
+  priceType: { initialArg: "o" },
+  selectedOptions: { initialArg: [] },
+  stocks: { initialArg: [] },
+  to: { initialArg: MAX },
 });
